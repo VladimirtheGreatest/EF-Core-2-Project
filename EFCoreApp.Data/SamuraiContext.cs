@@ -20,5 +20,9 @@ namespace EFCoreApp.Data
                  "Server = (localdb)\\mssqllocaldb; Database = EFCoreApp; Trusted_Connection = True; ");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SamuraiBattle>().HasKey(x => new { x.SamuraiId, x.BattleId });
+        }
     }
 }
