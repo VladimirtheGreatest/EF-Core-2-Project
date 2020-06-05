@@ -18,7 +18,8 @@ namespace UI
         //adding some extra content for masters branch
         //this is not going to appear on development
 
-        //creating conflict from githubo from my develop branch
+        //creating conflict from github from masters
+
         private static void InsertSamurai()
         {
             var samurai = new Samurai { Name = "Vladimir" };
