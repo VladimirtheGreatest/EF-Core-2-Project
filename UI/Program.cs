@@ -15,7 +15,9 @@ namespace UI
             InsertSamurai();
             InsertMultiple();
         }     
-
+        //adding some extra content for masters branch
+        //this is not going to appear on development
+        //testing merging
         private static void InsertSamurai()
         {
             var samurai = new Samurai { Name = "Vladimir" };
