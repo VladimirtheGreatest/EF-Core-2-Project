@@ -17,6 +17,7 @@ namespace UI
         }     
         //adding some extra content for masters branch
         //this is not going to appear on development
+
         //creating conflict from githubo from my develop branch
         private static void InsertSamurai()
         {
