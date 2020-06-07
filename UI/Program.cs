@@ -1,7 +1,9 @@
 ﻿using EFCoreApp.Data;
 using EFCoreApp.Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +15,11 @@ namespace UI
         private static SamuraiContext _context = new SamuraiContext();
         static void Main(string[] args)
         {
-            InsertSamurai();
-            InsertMultiple();
-            SamuraiQuery();
+            // InsertSamurai();
+            // InsertMultiple();
+            // SamuraiQuery();
+            //  RetrieveAndUpdateSamurai();
+          //  RetrieveAndUpdateMultipleSamurai();
         }     
         //adding some extra content for masters branch
         //this is not going to appear on development
@@ -45,7 +49,20 @@ namespace UI
         private static void SamuraiQuery ()
         {
             var name = "Vladimir";
-            var samurais = _context.Samurais.FirstOrDefault(x => x.Name == name)
+            var samurais = _context.Samurais.FirstOrDefault(x => x.Name == name);
+            var samuraiJ = _context.Samurais.Where(x => EF.Functions.Like(x.Name, "J%")).ToList();
+        }
+        private static void RetrieveAndUpdateSamurai()
+        {
+            var samurai = _context.Samurais.FirstOrDefault();
+            samurai.Name += "VladimirTheGreatest";
+            _context.SaveChanges();
+        }
+        private static void RetrieveAndUpdateMultipleSamurai()
+        {
+            var samurais = _context.Samurais.ToList();
+            samurais.ForEach(x => x.Name += "$$$");
+            _context.SaveChanges();
         }
     }
 }
