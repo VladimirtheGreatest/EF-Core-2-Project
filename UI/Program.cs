@@ -19,7 +19,8 @@ namespace UI
             // InsertMultiple();
             // SamuraiQuery();
             //  RetrieveAndUpdateSamurai();
-          //  RetrieveAndUpdateMultipleSamurai();
+            //  RetrieveAndUpdateMultipleSamurai();
+            QueryAndUpdateBattle_Disconnected();
         }     
         //adding some extra content for masters branch
         //this is not going to appear on development
@@ -63,6 +64,16 @@ namespace UI
             var samurais = _context.Samurais.ToList();
             samurais.ForEach(x => x.Name += "$$$");
             _context.SaveChanges();
+        }
+        private static void QueryAndUpdateBattle_Disconnected()
+        {
+            var battle = _context.Battles.FirstOrDefault();
+            battle.EndDate = new DateTime(1990, 07, 17);
+            using(var newContextInstance = new SamuraiContext())
+            {
+                newContextInstance.Battles.Update(battle);
+                newContextInstance.SaveChanges();
+            }
         }
     }
 }
