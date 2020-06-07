@@ -20,7 +20,8 @@ namespace UI
             // SamuraiQuery();
             //  RetrieveAndUpdateSamurai();
             //  RetrieveAndUpdateMultipleSamurai();
-            QueryAndUpdateBattle_Disconnected();
+            //  QueryAndUpdateBattle_Disconnected();
+            DeleteSamuraiTracked();
         }     
         //adding some extra content for masters branch
         //this is not going to appear on development
@@ -74,6 +75,12 @@ namespace UI
                 newContextInstance.Battles.Update(battle);
                 newContextInstance.SaveChanges();
             }
+        }
+        private static void DeleteSamuraiTracked()
+        {
+            var samurai = _context.Samurais.FirstOrDefault(x => x.Name == "VladimirVladimirTheGreatest$$$");
+            _context.Samurais.Remove(samurai);
+            _context.SaveChanges();         
         }
     }
 }
