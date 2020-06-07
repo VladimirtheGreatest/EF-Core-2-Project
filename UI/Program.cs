@@ -10,10 +10,12 @@ namespace UI
 {
     class Program
     {
+        private static SamuraiContext _context = new SamuraiContext();
         static void Main(string[] args)
         {
             InsertSamurai();
             InsertMultiple();
+            SamuraiQuery();
         }     
         //adding some extra content for masters branch
         //this is not going to appear on development
@@ -39,6 +41,11 @@ namespace UI
                 context.Samurais.AddRange(samurai, samurai2);
                 context.SaveChanges();
             }
+        }
+        private static void SamuraiQuery ()
+        {
+            var name = "Vladimir";
+            var samurais = _context.Samurais.FirstOrDefault(x => x.Name == name)
         }
     }
 }
