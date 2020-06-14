@@ -22,7 +22,8 @@ namespace UI
             //  RetrieveAndUpdateMultipleSamurai();
             //  QueryAndUpdateBattle_Disconnected();
             //DeleteSamuraiTracked();
-            InsertNewPkFkGraphMultipleChildren();
+            //InsertNewPkFkGraphMultipleChildren();
+            AddChild();
         }     
         //adding some extra content for masters branch
         //this is not going to appear on development
@@ -95,6 +96,15 @@ namespace UI
                 }
             };
             _context.Samurais.Add(samurai);
+            _context.SaveChanges();
+        }
+        private static void AddChild()
+        {
+            var samurai = _context.Samurais.FirstOrDefault();
+            samurai.Quotes.Add(new Quote
+            {
+                Text = "This is a new quote"
+            });
             _context.SaveChanges();
         }
     }
