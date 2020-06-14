@@ -21,7 +21,8 @@ namespace UI
             //  RetrieveAndUpdateSamurai();
             //  RetrieveAndUpdateMultipleSamurai();
             //  QueryAndUpdateBattle_Disconnected();
-            DeleteSamuraiTracked();
+            //DeleteSamuraiTracked();
+            InsertNewPkFkGraphMultipleChildren();
         }     
         //adding some extra content for masters branch
         //this is not going to appear on development
@@ -81,6 +82,20 @@ namespace UI
             var samurai = _context.Samurais.FirstOrDefault(x => x.Name == "VladimirVladimirTheGreatest$$$");
             _context.Samurais.Remove(samurai);
             _context.SaveChanges();         
+        }
+        private static void InsertNewPkFkGraphMultipleChildren()
+        {
+            var samurai = new Samurai
+            {
+                Name = "Vladimir",
+                Quotes = new List<Quote>
+                {
+                    new Quote {Text = "Hustle harder hustle smarter"},
+                     new Quote {Text = "This is a quote"}
+                }
+            };
+            _context.Samurais.Add(samurai);
+            _context.SaveChanges();
         }
     }
 }
