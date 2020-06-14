@@ -23,7 +23,8 @@ namespace UI
             //  QueryAndUpdateBattle_Disconnected();
             //DeleteSamuraiTracked();
             //InsertNewPkFkGraphMultipleChildren();
-            AddChild();
+            // AddChild();
+            EagerLoadSamuraiWithQuotes();
         }     
         //adding some extra content for masters branch
         //this is not going to appear on development
@@ -38,6 +39,11 @@ namespace UI
                 context.Samurais.Add(samurai);
                 context.SaveChanges();
             }
+        }
+
+        private static void EagerLoadSamuraiWithQuotes()
+        {
+            var samuraiWithQuotes = _context.Samurais.Where(x => x.Name.Contains("Vladimir")).Include(x => x.Quotes).ToList();
         }
         private static void InsertMultiple()
         {
